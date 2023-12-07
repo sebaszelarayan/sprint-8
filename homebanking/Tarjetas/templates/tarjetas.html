@@ -1,0 +1,37 @@
+{% extends 'home.html'%}
+{% block title%}Tarjetas{% endblock %}
+{% block h1%}Tarjetas{% endblock %}
+{% block content%}
+<main class="container pt-2">
+    <article class=" row row-cols-1 row-cols-md-2 g-4  col-9 listado pt-2">
+        {% if user.cliente.customer_name == user.first_name %}
+        {%for tarjeta in tarjetas%}
+        {% if tarjeta.customer_id == user.cliente.customer_id %}
+        <section class="col-5 mt-2 mb-4">
+            <section class="card border-secondary ">
+            <ul class="list-group list-group-flush" >
+                <li class="list-group-item border-secondary text-center"><h4>Trajeta de {{user.username}} </h4></li>
+                {% if tarjeta.tarjeta_id == 1%}
+                    <li class="list-group-item border-secondary text-primary">Marca de tarjeta: VISA</li>
+                {% elif tarjeta.tarjeta_id == 2%}
+                    <li class="list-group-item border-secondary text-danger">Marca de tarjeta: MASTER</li>
+                {% else %}
+                    <li class="list-group-item border-secondary text-warning">Marca de tarjeta: AMEX</li>
+                {% endif %}
+                <li class="list-group-item border-secondary text-dark">Numero de Tarjeta: {{tarjeta.numero}}</li>
+                <li class="list-group-item border-secondary text-dark">Numero CVV: {{tarjeta.cvv}}</li>
+                <li class="list-group-item border-secondary text-dark">Tipo de Tarjeta: {{tarjeta.tipo_tarjeta}}</li>
+                <li class="list-group-item border-secondary text-success">Fecha de Otorgamiento: {{tarjeta.fecha_de_otorgamiento}}</li>
+                <li class="list-group-item border-secondary text-danger ">Fecha de Expiracion: {{tarjeta.fecha_de_expiracion}}</li>
+            </ul>
+        </section>
+    </section>
+            {% endif %}
+        {% endfor %}
+        {% else %}
+                        <li class="list-group-item border-secondary text-danger">El Usuario <strong>{{user.username}}</strong> No tiene Trajetas registradas</li>
+                    {% endif %}
+
+    </article>
+</main>
+{%endblock%}
