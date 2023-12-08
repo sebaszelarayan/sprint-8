@@ -20,6 +20,9 @@ export function Navigation() {
                         <li className="nav-item ">
                             <Link className="nav-link" to="/ClientesForms">Modificar Clientes</Link>
                         </li>
+                        <li className="nav-item ">
+                            <Link className="nav-link" to="/BranchList">Lista de Sucursales</Link>
+                        </li>
                     </ul>
                 </div>
             </div>
