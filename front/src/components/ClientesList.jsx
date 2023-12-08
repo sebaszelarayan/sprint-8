@@ -1,17 +1,31 @@
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { getAllClientes } from "../api/Clientes.api";
+import { getAllClientes,getAllDirecciones,getAllTipoCliente,getAllSucursal } from "../api/Clientes.api";
 export function ClientesList() {
   const [Clientes, setClientes] = useState([]);
+  const [Direcciones, setDirecciones] = useState([]);
+  const [Sucursal, setSucursal] = useState([]);
+  const [TipoCliente, setTipoCliente] = useState([]);
+
   useEffect(() => {
     async function LoadClientes() {
-      const res = await getAllClientes();
-      setClientes(res.data);
+      const cli = await getAllClientes();
+      setClientes(cli.data);
+
+      const dir = await getAllDirecciones();
+      setDirecciones(dir.data);
+
+      const suc = await getAllSucursal();
+      setSucursal(suc.data);
+
+      const tcl = await getAllTipoCliente();
+      setTipoCliente(tcl.data);
+      
     }
     LoadClientes();
   }, []);
   return (
-    <>
+    
     <div className="container">
       <table className="table table-bordered table-sm text-center table-striped table-hover">
         <thead>
@@ -33,7 +47,7 @@ export function ClientesList() {
                 <td>{Clientes.customer_surname}</td>
                 <td>{Clientes.dob}</td>
                 <td>{Clientes.customer_DNI}</td>
-                <td>{Clientes.branch}</td>
+                <td>{Sucursal.branch}</td>
                 <td>{Clientes.direccion}</td>
                 <td>{Clientes.tipo_cliente}</td>
             </tr>
@@ -43,6 +57,6 @@ export function ClientesList() {
         ))}
       </table>
       </div>
-    </>
+    
   );
 }

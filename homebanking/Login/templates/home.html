@@ -35,28 +35,29 @@
                         <li class="nav-item ">
                             <a class="nav-link" href="{% url 'Movimientos' %}">Movimientos</a>
                         </li>
-                        <li>
-                            <a href="http://localhost:5173/ClientesPage">lista Uusarios</a>
+                        <li class="nav-item ">
+                            <a class="nav-link" href="http://localhost:5173/ClientesPage">Modificar</a>
                         </li>
+
                     </ul>
                 </div>
-        <ul class="justify-content-end ">
+                <ul class="justify-content-end ">
+                    {% if user.is_authenticated %}
+                    <p class="text-center"><b> Hola {{user.username }}</b></p>
+                    <a class="btn btn-danger" role="button" href="{% url 'logout' %}">Cerrar Sesión</a>
+                    {% else %}
+                    <a class="btn btn-primary " role="button" href="{% url 'login' %}">Iniciar Sesión</a>
+                    <a class="btn btn-secondary" role="button" href="{% url 'register'%}">Registrar</a>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
         {% if user.is_authenticated %}
-        <p class="text-center"><b> Hola {{user.username }}</b></p>
-            <a class="btn btn-danger" role="button" href="{% url 'logout' %}">Cerrar Sesión</a>
-            {% else %}
-            <a class="btn btn-primary " role="button"  href="{% url 'login' %}">Iniciar Sesión</a>
-            <a class="btn btn-secondary" role="button" href="{% url 'register'%}">Registrar</a>
-            {% endif %}
-        </ul>
-    </div>
-    </nav>
-    {% if user.is_authenticated %}
-    <h1 class="text-center">Bienvenido a {% block h1%}HomeBanking{% endblock %}</h1>
-    {% endif %}
+        <h1 class="text-center">Bienvenido a {% block h1%}HomeBanking{% endblock %}</h1>
+        {% endif %}
 
         {% block content%}
-    
+
         {%endblock%}
 </body>
 

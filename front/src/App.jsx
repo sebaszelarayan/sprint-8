@@ -6,6 +6,8 @@ import { Navigation } from "./components/Navigation";
 
 function App() {
   return (
+    <body>
+    <main class="container">
     <BrowserRouter>
       <Navigation/>
       <Routes>
@@ -14,6 +16,9 @@ function App() {
 
       </Routes>
     </BrowserRouter>
+    </main>
+      
+    </body>
   );
 }
 export default App;
