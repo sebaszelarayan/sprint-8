@@ -20,6 +20,7 @@ export function ClientesList() {
 
       const tcl = await getAllTipoCliente();
       setTipoCliente(tcl.data);
+
       
     }
     LoadClientes();
@@ -35,21 +36,30 @@ export function ClientesList() {
             <th>Apellido</th>
             <th>Fecha de Nacimiento</th>
             <th>DNI</th>
-            <th>Breanch</th>
-            <th>direccion</th>
+            <th>Branch</th>
+            <th>Pais</th>
+            <th>Provincia</th>
+            <th>Ciudad</th>
+            <th>Calle</th>
+            <th>Numero</th>
             <th>Tipo de Cliente</th>
         </tr>
         </thead>
-        {Clientes.map((Clientes) => (
+        {Clientes.map((Clientes) => 
+          Clientes.customer_id<10 && (
           <tbody>
             <tr key={Clientes.customer_id}>
                 <td>{Clientes.customer_name}</td>
                 <td>{Clientes.customer_surname}</td>
                 <td>{Clientes.dob}</td>
                 <td>{Clientes.customer_DNI}</td>
-                <td>{Sucursal.branch}</td>
-                <td>{Clientes.direccion}</td>
-                <td>{Clientes.tipo_cliente}</td>
+                <td>{Sucursal.map((sucursal)=>sucursal.branch_id==Clientes.branch && sucursal.branch_name)}</td>
+                <td>{Direcciones.map((direccion)=> direccion.direccion_id==Clientes.direccion && direccion.pais)}</td>
+                <td>{Direcciones.map((direccion)=> direccion.direccion_id==Clientes.direccion && direccion.provincia)}</td>
+                <td>{Direcciones.map((direccion)=> direccion.direccion_id==Clientes.direccion && direccion.ciudad)}</td>
+                <td>{Direcciones.map((direccion)=> direccion.direccion_id==Clientes.direccion && direccion.calle)}</td>
+                <td>{Direcciones.map((direccion)=> direccion.direccion_id==Clientes.direccion && direccion.numero)}</td>
+                <td>{TipoCliente.map((tipoCliente)=>tipoCliente.tipo_cliente_id==Clientes.tipo_cliente && tipoCliente.tipo_name)}</td>
             </tr>
             </tbody>
             
