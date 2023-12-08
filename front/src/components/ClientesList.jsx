@@ -28,6 +28,7 @@ export function ClientesList() {
   return (
     
     <div className="container">
+      <h1>Informacion del Cliente</h1>
       <table className="table table-bordered table-sm text-center table-striped table-hover">
         <thead>
         
