@@ -68,6 +68,7 @@ export function ClientesList() {
         ))}
       </table>
       </div>
+
     
   );
 }

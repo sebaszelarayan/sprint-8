@@ -5,7 +5,7 @@ class Cliente(models.Model):
     customer_id = models.AutoField(primary_key=True)
     customer_name = models.TextField()
     customer_surname = models.TextField()  # This field type is a guess.
-    customer_DNI = models.OneToOneField("Login.CustomUser", on_delete=models.CASCADE)  # Field name made lowercase.
+    customer_DNI = models.OneToOneField("Login.CustomUser", on_delete=models.CASCADE, null=True)  # Field name made lowercase.
     dob = models.TextField(blank=True, null=True)
     branch = models.ForeignKey("Sucursal", on_delete=models.CASCADE)
     direccion = models.ForeignKey("Direcciones", on_delete=models.CASCADE)
